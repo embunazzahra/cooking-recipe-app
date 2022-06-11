@@ -74,6 +74,22 @@ async function getRecipeByRecipeId(recipe) {
   }
 }
 
+async function getRecipeByUserId(recipe) {
+  const { user_id } = recipe;
+  const query = `
+    SELECT recipes.recipe_id,recipes.recipe_name,recipes.user_id,users.username
+    FROM recipes
+    INNER JOIN users
+    ON recipes.user_id = users.user_id
+    WHERE recipes.user_id = ${user_id}`;
+  let result = await db.query(query);
+  if (result.rowCount == 0) {
+    return { message: "You have no recipe" };
+  } else {
+    return { message: "success", data: result.rows };
+  }
+}
+
 async function addRecipe(recipe) {
   const { recipe_name, ingredient, direction, user_id } = recipe;
   const query = `INSERT INTO recipes(recipe_name,ingredient,direction,user_id) VALUES 
@@ -174,6 +190,7 @@ module.exports = {
   getAllRecipes,
   addRecipe,
   getRecipeByRecipeId,
+  getRecipeByUserId,
   updateRecipe,
   deleteRecipe,
   addBookmark,

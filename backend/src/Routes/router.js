@@ -18,6 +18,8 @@ router.get("/recipes", controllers.getAllRecipes);
 
 router.get("/recipebyid", [validateRecipeId], controllers.getRecipeByRecipeId);
 
+router.get("/recipebyuser", [validateUserId], controllers.getRecipeByUserId);
+
 router.post(
   "/addRecipe",
   [

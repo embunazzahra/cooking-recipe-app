@@ -50,4 +50,10 @@ router.post(
 
 router.get("/getBookmark", [validateUserId], controllers.getBookmark);
 
+router.delete(
+  "/deleteBookmark",
+  [validateRecipeId, validateUserId],
+  controllers.deleteBookmark
+);
+
 module.exports = router;

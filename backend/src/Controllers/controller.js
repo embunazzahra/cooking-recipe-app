@@ -145,6 +145,24 @@ async function getBookmark(req, res) {
   }
 }
 
+async function deleteBookmark(req, res) {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: errors.array()[0].msg });
+    } else {
+      const result = await services.deleteBookmark(req.body);
+      res.json(result);
+    }
+  } catch (err) {
+    if (err.detail != null) {
+      res.json({ message: err.detail });
+    } else {
+      res.json(err);
+    }
+  }
+}
+
 module.exports = {
   login,
   register,
@@ -155,4 +173,5 @@ module.exports = {
   deleteRecipe,
   addBookmark,
   getBookmark,
+  deleteBookmark,
 };

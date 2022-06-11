@@ -140,6 +140,23 @@ async function isBookmarkAlreadyExist(bookmark) {
   }
 }
 
+async function getBookmark(user) {
+  const { user_id } = user;
+  const query = `SELECT recipes.recipe_id,recipes.recipe_name,recipes.user_id,users.username
+    FROM recipes
+    INNER JOIN users
+    ON recipes.user_id = users.user_id
+    INNER JOIN saved_recipes
+    ON recipes.recipe_id = saved_recipes.recipe_id
+    WHERE saved_recipes.user_id = ${user_id}`;
+  let result = await db.query(query);
+  if (result.rowCount > 0) {
+    return { message: "success", data: result.rows };
+  } else {
+    return { message: "You have no bookmark" };
+  }
+}
+
 module.exports = {
   login,
   register,
@@ -149,4 +166,5 @@ module.exports = {
   updateRecipe,
   deleteRecipe,
   addBookmark,
+  getBookmark,
 };

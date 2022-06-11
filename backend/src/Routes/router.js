@@ -48,4 +48,6 @@ router.post(
   controllers.addBookmark
 );
 
+router.get("/getBookmark", [validateUserId], controllers.getBookmark);
+
 module.exports = router;

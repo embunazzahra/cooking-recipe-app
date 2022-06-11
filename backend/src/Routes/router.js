@@ -40,4 +40,6 @@ router.put(
   controllers.updateRecipe
 );
 
+router.delete("/deleteRecipe", [validateRecipeId], controllers.deleteRecipe);
+
 module.exports = router;

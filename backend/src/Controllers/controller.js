@@ -91,6 +91,24 @@ async function updateRecipe(req, res) {
   }
 }
 
+async function deleteRecipe(req, res) {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: errors.array()[0].msg });
+    } else {
+      const result = await services.deleteRecipe(req.body);
+      res.json(result);
+    }
+  } catch (err) {
+    if (err.detail != null) {
+      res.json({ message: err.detail });
+    } else {
+      res.json(err);
+    }
+  }
+}
+
 module.exports = {
   login,
   register,
@@ -98,4 +116,5 @@ module.exports = {
   addRecipe,
   getRecipeByRecipeId,
   updateRecipe,
+  deleteRecipe,
 };

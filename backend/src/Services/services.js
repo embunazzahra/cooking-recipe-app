@@ -101,6 +101,17 @@ async function updateRecipe(recipe) {
   }
 }
 
+async function deleteRecipe(recipe) {
+  const { recipe_id } = recipe;
+  const query = `DELETE FROM recipes WHERE recipe_id = '${recipe_id}'`;
+  let result = await db.query(query);
+  if (result.rowCount > 0) {
+    return { message: "Success" };
+  } else {
+    return { message: "Failed" };
+  }
+}
+
 module.exports = {
   login,
   register,
@@ -108,4 +119,5 @@ module.exports = {
   addRecipe,
   getRecipeByRecipeId,
   updateRecipe,
+  deleteRecipe,
 };

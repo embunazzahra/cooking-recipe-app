@@ -29,4 +29,15 @@ router.post(
   controllers.addRecipe
 );
 
+router.put(
+  "/updateRecipe",
+  [
+    validateRecipeId,
+    validateRecipeName,
+    validateRecipeIngredient,
+    validateRecipeDirection,
+  ],
+  controllers.updateRecipe
+);
+
 module.exports = router;

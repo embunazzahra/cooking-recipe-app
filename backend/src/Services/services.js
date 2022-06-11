@@ -79,7 +79,21 @@ async function addRecipe(recipe) {
   const query = `INSERT INTO recipes(recipe_name,ingredient,direction,user_id) VALUES 
   ('${recipe_name}','${ingredient}','${direction}',${user_id});`;
   let result = await db.query(query);
-  console.log(result);
+  if (result.rowCount > 0) {
+    return { message: "Success" };
+  } else {
+    return { message: "Failed" };
+  }
+}
+
+async function updateRecipe(recipe) {
+  const { recipe_id, recipe_name, ingredient, direction } = recipe;
+  const query = `UPDATE recipes SET 
+    recipe_name = '${recipe_name}',
+    ingredient = '${ingredient}',
+    direction = '${direction}'
+    WHERE recipe_id = '${recipe_id}'`;
+  let result = await db.query(query);
   if (result.rowCount > 0) {
     return { message: "Success" };
   } else {
@@ -93,4 +107,5 @@ module.exports = {
   getAllRecipes,
   addRecipe,
   getRecipeByRecipeId,
+  updateRecipe,
 };

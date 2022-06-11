@@ -47,13 +47,28 @@ async function register(user) {
 }
 
 async function getAllRecipes() {
-  const query = `SELECT recipe_id,recipe_name,description,recipes.user_id,users.username
+  const query = `SELECT recipe_id,recipe_name,ingredient,direction,recipes.user_id,users.username
     FROM recipes
     INNER JOIN users
     ON recipes.user_id = users.user_id;`;
   let result = await db.query(query);
   if (result.rowCount == 0) {
     return { message: "No recipe exist." };
+  } else {
+    return { message: "success", data: result.rows };
+  }
+}
+
+async function getRecipeByRecipeId(recipe) {
+  const { recipe_id } = recipe;
+  const query = `SELECT recipe_id,recipe_name,ingredient,direction,recipes.user_id,users.username
+      FROM recipes
+      INNER JOIN users
+      ON recipes.user_id = users.user_id
+      WHERE recipe_id = ${recipe_id};`;
+  let result = await db.query(query);
+  if (result.rowCount == 0) {
+    return { message: "Recipe not found." };
   } else {
     return { message: "success", data: result.rows };
   }
@@ -77,4 +92,5 @@ module.exports = {
   register,
   getAllRecipes,
   addRecipe,
+  getRecipeByRecipeId,
 };

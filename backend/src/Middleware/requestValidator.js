@@ -34,4 +34,9 @@ module.exports = {
     .withMessage("User id name can't be empty")
     .isNumeric()
     .withMessage("User id should be a number"),
+  validateRecipeId: check("recipe_id")
+    .notEmpty()
+    .withMessage("User id name can't be empty")
+    .isNumeric()
+    .withMessage("User id should be a number"),
 };

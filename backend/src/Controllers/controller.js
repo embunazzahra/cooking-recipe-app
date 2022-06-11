@@ -37,6 +37,24 @@ async function getAllRecipes(req, res) {
   }
 }
 
+async function getRecipeByRecipeId(req, res) {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: errors.array()[0].msg });
+    } else {
+      const result = await services.getRecipeByRecipeId(req.body);
+      res.json(result);
+    }
+  } catch (err) {
+    if (err.detail != null) {
+      res.json({ message: err.detail });
+    } else {
+      res.json(err);
+    }
+  }
+}
+
 async function addRecipe(req, res) {
   try {
     const errors = validationResult(req);
@@ -59,4 +77,5 @@ module.exports = {
   register,
   getAllRecipes,
   addRecipe,
+  getRecipeByRecipeId,
 };

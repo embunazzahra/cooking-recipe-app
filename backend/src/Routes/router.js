@@ -42,4 +42,10 @@ router.put(
 
 router.delete("/deleteRecipe", [validateRecipeId], controllers.deleteRecipe);
 
+router.post(
+  "/addBookmark",
+  [validateRecipeId, validateUserId],
+  controllers.addBookmark
+);
+
 module.exports = router;

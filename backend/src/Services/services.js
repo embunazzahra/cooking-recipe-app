@@ -112,6 +112,34 @@ async function deleteRecipe(recipe) {
   }
 }
 
+async function addBookmark(bookmark) {
+  if (await isBookmarkAlreadyExist(bookmark)) {
+    return { message: "It's already in your bookmarks" };
+  } else {
+    const { user_id, recipe_id } = bookmark;
+    const query = `INSERT INTO saved_recipes(recipe_id,user_id)
+      VALUES
+      (${recipe_id},${user_id})`;
+    let result = await db.query(query);
+    if (result.rowCount > 0) {
+      return { message: "Success" };
+    } else {
+      return { message: "Failed" };
+    }
+  }
+}
+
+async function isBookmarkAlreadyExist(bookmark) {
+  const { user_id, recipe_id } = bookmark;
+  const query = `SELECT * FROM saved_recipes WHERE recipe_id = ${recipe_id} AND user_id = ${user_id}`;
+  let result = await db.query(query);
+  if (result.rowCount > 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 module.exports = {
   login,
   register,
@@ -120,4 +148,5 @@ module.exports = {
   getRecipeByRecipeId,
   updateRecipe,
   deleteRecipe,
+  addBookmark,
 };

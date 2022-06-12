@@ -10,7 +10,7 @@ const {
   validateRecipeId,
 } = require("../Middleware/requestValidator");
 
-router.get("/login", controllers.login);
+router.post("/login", controllers.login);
 
 router.post("/register", [validateUsername], controllers.register);
 

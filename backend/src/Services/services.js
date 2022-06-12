@@ -13,11 +13,13 @@ async function login(user) {
   const result = await db.query(query);
   if (result.rowCount == 0) {
     return { message: "account not found" };
-  }
-  if (comparePassword(password, result.rows[0].password)) {
-    return { message: "log in success", user: result.rows[0] };
   } else {
-    return { message: "Wrong Password" };
+    let isMatch = await comparePassword(password, result.rows[0].password);
+    if (isMatch) {
+      return { message: "log in success", user: result.rows[0] };
+    } else {
+      return { message: "Wrong Password" };
+    }
   }
 }
 

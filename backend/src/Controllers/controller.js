@@ -21,9 +21,9 @@ async function register(req, res) {
     }
   } catch (err) {
     if (err.detail != null) {
-      res.json({ message: err.detail });
+      res.status(400).json({ message: err.detail });
     } else {
-      res.json(err);
+      res.status(400).json(err);
     }
   }
 }
@@ -33,7 +33,7 @@ async function getAllRecipes(req, res) {
     const result = await services.getAllRecipes();
     res.json(result);
   } catch (err) {
-    res.json(err);
+    res.status(400).json(err);
   }
 }
 
@@ -48,9 +48,9 @@ async function getRecipeByRecipeId(req, res) {
     }
   } catch (err) {
     if (err.detail != null) {
-      res.json({ message: err.detail });
+      res.status(400).json({ message: err.detail });
     } else {
-      res.json(err);
+      res.status(400).json(err);
     }
   }
 }
@@ -66,9 +66,9 @@ async function getRecipeByUserId(req, res) {
     }
   } catch (err) {
     if (err.detail != null) {
-      res.json({ message: err.detail });
+      res.status(400).json({ message: err.detail });
     } else {
-      res.json(err);
+      res.status(400).json(err);
     }
   }
 }
@@ -84,9 +84,9 @@ async function addRecipe(req, res) {
     }
   } catch (err) {
     if (err.detail != null) {
-      res.json({ message: err.detail });
+      res.status(400).json({ message: err.detail });
     } else {
-      res.json(err);
+      res.status(400).json(err);
     }
   }
 }
@@ -102,9 +102,9 @@ async function updateRecipe(req, res) {
     }
   } catch (err) {
     if (err.detail != null) {
-      res.json({ message: err.detail });
+      res.status(400).json({ message: err.detail });
     } else {
-      res.json(err);
+      res.status(400).json(err);
     }
   }
 }
@@ -120,9 +120,9 @@ async function deleteRecipe(req, res) {
     }
   } catch (err) {
     if (err.detail != null) {
-      res.json({ message: err.detail });
+      res.status(400).json({ message: err.detail });
     } else {
-      res.json(err);
+      res.status(400).json(err);
     }
   }
 }
@@ -138,9 +138,9 @@ async function addBookmark(req, res) {
     }
   } catch (err) {
     if (err.detail != null) {
-      res.json({ message: err.detail });
+      res.status(400).json({ message: err.detail });
     } else {
-      res.json(err);
+      res.status(400).json(err);
     }
   }
 }
@@ -156,9 +156,9 @@ async function getBookmark(req, res) {
     }
   } catch (err) {
     if (err.detail != null) {
-      res.json({ message: err.detail });
+      res.status(400).json({ message: err.detail });
     } else {
-      res.json(err);
+      res.status(400).json(err);
     }
   }
 }
@@ -174,9 +174,9 @@ async function deleteBookmark(req, res) {
     }
   } catch (err) {
     if (err.detail != null) {
-      res.json({ message: err.detail });
+      res.status(400).json({ message: err.detail });
     } else {
-      res.json(err);
+      res.status(400).json(err);
     }
   }
 }

@@ -11,4 +11,7 @@ public interface RetrofitServices {
 
     @POST("/login")
     Call<Object> login(@Body User user);
+
+    @POST("/register")
+    Call<Object> register(@Body User user);
 }

@@ -29,6 +29,12 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etEmail;
     private Button loginBtn;
     private Button regBtn;
+    private static User loggedAccount = null;
+
+    private static final Gson gson = new Gson();
+    public static User getLoggedAccount(){
+        return loggedAccount;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,13 @@ public class LoginActivity extends AppCompatActivity {
                 login();
             }
         });
+
+        regBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+            }
+        });
     }
 
     private void login() {
@@ -61,12 +74,13 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Object> call, Response<Object> response) {
                         try{
-                            String obj = new Gson().toJson(response.body());
+                            String obj = gson.toJson(response.body());
                             JSONObject jsonObject = new JSONObject(obj);
                             String message = jsonObject.getString("message");
+                            loggedAccount = gson.fromJson(jsonObject.getString("user"),User.class);
                             if(message!=null) {
                                 Toast.makeText(LoginActivity.this, message,Toast.LENGTH_SHORT).show();
-                                if (message == "log in success") {
+                                if (message.equalsIgnoreCase("log in success")) {
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
                                 }

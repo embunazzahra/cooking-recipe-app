@@ -1,5 +1,6 @@
 package com.embun.cookingrecipeapp.data.services;
 
+import com.embun.cookingrecipeapp.data.model.DefaultResponse;
 import com.embun.cookingrecipeapp.data.model.User;
 
 import retrofit2.Call;
@@ -13,5 +14,5 @@ public interface RetrofitServices {
     Call<Object> login(@Body User user);
 
     @POST("/register")
-    Call<Object> register(@Body User user);
+    Call<DefaultResponse> register(@Body User user);
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.embun.cookingrecipeapp.R;
@@ -31,6 +32,7 @@ import retrofit2.Response;
  */
 public class BookmarkFragment extends Fragment {
     ListView bookmarkList;
+    TextView tvBookmark;
     private static ArrayAdapter<Recipe> bookmarkLVAdapter;
     private RetrofitServices retrofitServices;
     private static List<Recipe> recipes;
@@ -78,6 +80,7 @@ public class BookmarkFragment extends Fragment {
         // Inflate the layout for this fragment
        View recipeView = inflater.inflate(R.layout.fragment_bookmark, container, false);
         bookmarkList = (ListView) recipeView.findViewById(R.id.lvBookmark);
+        tvBookmark = (TextView) recipeView.findViewById(R.id.tvBookmark);
 
         Call<GetRecipesResponse> call = retrofitServices.getBookmark(LoginActivity.getLoggedAccount());
         call.enqueue(new Callback<GetRecipesResponse>() {
@@ -86,12 +89,12 @@ public class BookmarkFragment extends Fragment {
                 if(response.code()==200){
                     GetRecipesResponse resp = response.body();
                     recipes = resp.getRecipes();
-                    if(!recipes.isEmpty()){
+                    if(recipes!=null){
                         bookmarkLVAdapter = new ArrayAdapter<Recipe>(getActivity(),android.R.layout.simple_list_item_1,
                                 recipes);
                         bookmarkList.setAdapter(bookmarkLVAdapter);
                     }else {
-                        Toast.makeText(getActivity(), resp.getMessage(),Toast.LENGTH_SHORT).show();
+                        tvBookmark.setText("You Have No Bookmark Yet.");
                     }
 
                 }else{

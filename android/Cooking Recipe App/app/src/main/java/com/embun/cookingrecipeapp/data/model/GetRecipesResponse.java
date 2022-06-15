@@ -6,7 +6,7 @@ import java.util.List;
 
 public class GetRecipesResponse extends  DefaultResponse{
     @SerializedName("data")
-    private List<Recipe> recipes;
+    private List<Recipe> recipes = null;
 
     public GetRecipesResponse(String message, List<Recipe> recipes) {
         super(message);

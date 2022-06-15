@@ -32,4 +32,7 @@ public interface RetrofitServices {
 
     @POST("/addBookmark")
     Call<DefaultResponse> addBookmark(@Body HashMap map);
+
+    @POST("/checkBookmark")
+    Call<DefaultResponse> checkBookmark(@Body HashMap map);
 }

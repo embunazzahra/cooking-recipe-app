@@ -139,6 +139,18 @@
 
             </LinearLayout>
 
+            <!-- TODO: Delete Bookmark -->
+            <android.widget.Button
+                android:layout_width="330dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:text="Delete from Bookmark"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:background="@drawable/custom_button"
+                android:id="@+id/btnBookmarkDelete"
+                android:visibility="gone"/>
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

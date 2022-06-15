@@ -29,7 +29,7 @@ import retrofit2.Response;
 public class RecipeDetailActivity extends AppCompatActivity {
     private RetrofitServices retrofitServices;
     TextView tvRecipeName, tvrecipeWriter,tvIngredient,tvDirection;
-    Button btnBookmark;
+    Button btnBookmark, btnBookmarkDelete;
     Recipe recipe = RecipeFragment.selectedRecipe;
 
     @Override
@@ -41,6 +41,11 @@ public class RecipeDetailActivity extends AppCompatActivity {
         tvIngredient = findViewById(R.id.tvIngredient);
         tvDirection = findViewById(R.id.tvDirection);
         btnBookmark = findViewById(R.id.btnBookmark);
+        btnBookmarkDelete = findViewById(R.id.btnBookmarkDelete);
+
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("recipe_id", Integer.valueOf(recipe.getRecipe_id()) );
+        map.put("user_id", Integer.valueOf(LoginActivity.getLoggedAccount().getUser_id()));
 
         retrofitServices = RetrofitInstance.getInstance().create(RetrofitServices.class);
         Call<GetRecipesResponse> call = retrofitServices.recipebyid(recipe);
@@ -78,15 +83,12 @@ public class RecipeDetailActivity extends AppCompatActivity {
         btnBookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addBookmark();
+                addBookmark(map);
             }
         });
     }
 
-    private void addBookmark(){
-        HashMap<String, Integer> map = new HashMap<>();
-        map.put("recipe_id", Integer.valueOf(recipe.getRecipe_id()) );
-        map.put("user_id", Integer.valueOf(LoginActivity.getLoggedAccount().getUser_id()));
+    private void addBookmark(HashMap map){
         Call <DefaultResponse> call = retrofitServices.addBookmark(map);
         call.enqueue(new Callback<DefaultResponse>() {
             @Override
@@ -108,5 +110,29 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 Toast.makeText(RecipeDetailActivity.this, t.toString(),Toast.LENGTH_SHORT).show();
             }
         });
+
+        /**
+         * set bookmark button visibility
+         * */
+        btnBookmarkDelete.setVisibility(View.GONE);
+        Call<DefaultResponse> checkbookmarkCall = retrofitServices.checkBookmark(map);
+        checkbookmarkCall.enqueue(new Callback<DefaultResponse>() {
+            @Override
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                if(response.code()==200){
+                    DefaultResponse resp = response.body();
+                    if(resp.getMessage().equalsIgnoreCase("Exist")){
+                        btnBookmarkDelete.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+
+            }
+        });
     }
+
+
 }

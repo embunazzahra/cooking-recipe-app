@@ -25,4 +25,7 @@ public interface RetrofitServices {
 
     @POST("/getBookmark")
     Call<GetRecipesResponse> getBookmark(@Body User user);
+
+    @POST("/recipebyid")
+    Call<GetRecipesResponse> recipebyid(@Body Recipe recipe);
 }

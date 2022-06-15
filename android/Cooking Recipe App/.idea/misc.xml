@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/drawable/shape_panel.xml" value="0.19427083333333334" />
         <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/layout/activity_main.xml" value="0.17708333333333334" />
+        <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/layout/activity_recipe_detail.xml" value="0.33" />
         <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/layout/activity_register.xml" value="0.27291666666666664" />
         <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/layout/fragment_bookmark.xml" value="0.27291666666666664" />
         <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/layout/fragment_recipe.xml" value="0.14270833333333333" />

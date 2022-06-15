@@ -1,5 +1,6 @@
 package com.embun.cookingrecipeapp.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -43,6 +45,7 @@ public class RecipeFragment extends Fragment {
     private static ArrayAdapter<Recipe> recipeLVAdapter;
     private RetrofitServices retrofitServices;
     private static List<Recipe> recipes;
+    public static Recipe selectedRecipe = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -114,6 +117,19 @@ public class RecipeFragment extends Fragment {
             }
         });
 
+        /**
+         * If the listview is clicked,
+         * it will move to recipe detail activity
+         * in RecipeDetailActivity.class
+         */
+        recipeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedRecipe = recipes.get(i);
+                Intent intent = new Intent(getActivity(),RecipeDetailActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return  recipeView;
     }

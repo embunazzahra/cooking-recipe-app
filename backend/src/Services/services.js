@@ -186,6 +186,17 @@ async function deleteBookmark(bookmark) {
   }
 }
 
+async function checkBookmark(bookmark) {
+  const { user_id, recipe_id } = bookmark;
+  const query = `SELECT * FROM saved_recipes WHERE recipe_id = ${recipe_id} AND user_id = ${user_id}`;
+  let result = await db.query(query);
+  if (result.rowCount > 0) {
+    return { message: "Exist" };
+  } else {
+    return { message: "Not Exist" };
+  }
+}
+
 module.exports = {
   login,
   register,
@@ -198,4 +209,5 @@ module.exports = {
   addBookmark,
   getBookmark,
   deleteBookmark,
+  checkBookmark,
 };

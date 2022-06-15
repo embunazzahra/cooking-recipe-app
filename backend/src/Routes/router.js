@@ -58,4 +58,9 @@ router.delete(
   controllers.deleteBookmark
 );
 
+router.post(
+  "/checkBookmark",
+  [validateRecipeId, validateUserId],
+  controllers.checkBookmark
+);
 module.exports = router;

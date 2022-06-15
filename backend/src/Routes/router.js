@@ -16,9 +16,9 @@ router.post("/register", [validateUsername], controllers.register);
 
 router.get("/recipes", controllers.getAllRecipes);
 
-router.get("/recipebyid", [validateRecipeId], controllers.getRecipeByRecipeId);
+router.post("/recipebyid", [validateRecipeId], controllers.getRecipeByRecipeId);
 
-router.get("/recipebyuser", [validateUserId], controllers.getRecipeByUserId);
+router.post("/recipebyuser", [validateUserId], controllers.getRecipeByUserId);
 
 router.post(
   "/addRecipe",
@@ -50,7 +50,7 @@ router.post(
   controllers.addBookmark
 );
 
-router.get("/getBookmark", [validateUserId], controllers.getBookmark);
+router.post("/getBookmark", [validateUserId], controllers.getBookmark);
 
 router.delete(
   "/deleteBookmark",

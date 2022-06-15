@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tab_layout);
         pager2 = findViewById(R.id.view_pager2);
 
+        //for all recipes
         FragmentManager fm = getSupportFragmentManager();
         adapter = new FragmentAdapter(fm,getLifecycle());
         pager2.setAdapter(adapter);

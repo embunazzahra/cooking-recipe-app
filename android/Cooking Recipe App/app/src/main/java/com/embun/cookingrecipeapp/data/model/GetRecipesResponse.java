@@ -13,6 +13,10 @@ public class GetRecipesResponse extends  DefaultResponse{
         this.recipes = recipes;
     }
 
+    public GetRecipesResponse(String message){
+        super(message);
+    }
+
     public String getMessage() {
         return super.getMessage();
     }

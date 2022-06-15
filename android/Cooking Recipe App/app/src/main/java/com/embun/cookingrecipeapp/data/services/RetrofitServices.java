@@ -22,4 +22,7 @@ public interface RetrofitServices {
 
     @GET("/recipes")
     Call<GetRecipesResponse> recipes();
+
+    @GET("/getBookmark")
+    Call<GetRecipesResponse> getBookmark(@Body User user);
 }

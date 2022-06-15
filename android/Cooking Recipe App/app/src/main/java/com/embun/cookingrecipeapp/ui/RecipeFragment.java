@@ -43,7 +43,6 @@ public class RecipeFragment extends Fragment {
     private static ArrayAdapter<Recipe> recipeLVAdapter;
     private RetrofitServices retrofitServices;
     private static List<Recipe> recipes;
-    private Gson gson;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -96,8 +95,6 @@ public class RecipeFragment extends Fragment {
             public void onResponse(Call<GetRecipesResponse> call, Response<GetRecipesResponse> response) {
                 if(response.code()==200){
                     GetRecipesResponse resp = response.body();
-                    Toast.makeText(getActivity(), resp.getMessage(),Toast.LENGTH_SHORT).show();
-
                     recipes = resp.getRecipes();
                     recipeLVAdapter = new ArrayAdapter<Recipe>(getActivity(),android.R.layout.simple_list_item_1,
                             recipes);

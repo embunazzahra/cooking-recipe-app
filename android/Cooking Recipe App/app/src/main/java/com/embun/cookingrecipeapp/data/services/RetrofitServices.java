@@ -5,6 +5,7 @@ import com.embun.cookingrecipeapp.data.model.GetRecipesResponse;
 import com.embun.cookingrecipeapp.data.model.Recipe;
 import com.embun.cookingrecipeapp.data.model.User;
 
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -28,4 +29,7 @@ public interface RetrofitServices {
 
     @POST("/recipebyid")
     Call<GetRecipesResponse> recipebyid(@Body Recipe recipe);
+
+    @POST("/addBookmark")
+    Call<DefaultResponse> addBookmark(@Body HashMap map);
 }

@@ -40,4 +40,12 @@ public interface RetrofitServices {
 
     @HTTP(method = "DELETE", path = "/deleteBookmark", hasBody = true)
     Call<DefaultResponse> deleteBookmark(@Body HashMap map);
+
+    @POST("/recipebyuser")
+    Call<GetRecipesResponse> recipebyuser(@Body User user);
+
+    @POST("/addRecipe")
+    Call<DefaultResponse> addRecipe(@Body Recipe recipe);
+
+
 }

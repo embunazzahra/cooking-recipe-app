@@ -80,7 +80,7 @@ public class RecipeFragment extends Fragment {
                 Toast.makeText(getActivity(),"search clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.addProduct:
-                startActivity(new Intent(getActivity(), UserProfileActivity.class));
+                startActivity(new Intent(getActivity(), AddRecipeActivity.class));
                 break;
             case R.id.aboutme:
                 startActivity(new Intent(getActivity(), UserProfileActivity.class));

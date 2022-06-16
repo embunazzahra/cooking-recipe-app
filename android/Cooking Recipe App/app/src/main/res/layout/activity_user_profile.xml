@@ -10,14 +10,13 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
         android:gravity="center"
         android:orientation="vertical"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.008"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintVertical_bias="0.138"
+        tools:layout_editor_absoluteX="3dp">
 
         <ImageView
             android:layout_width="70dp"
@@ -97,18 +96,28 @@
             android:textColor="@color/black"
             android:textSize="18dp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvUserRecipes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You haven't create any recipe"
+            android:visibility="gone" />
     </LinearLayout>
 
     <ListView
         android:id="@+id/lvUserRecipes"
-        android:layout_width="match_parent"
-        android:layout_height="390dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="408dp"
+        android:layout_height="297dp"
         android:clipToPadding="false"
         android:scrollbarStyle="outsideOverlay"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0">
+
+    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

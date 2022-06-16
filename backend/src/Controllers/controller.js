@@ -73,6 +73,24 @@ async function getRecipeByUserId(req, res) {
   }
 }
 
+async function checkRecipe(req, res) {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: errors.array()[0].msg });
+    } else {
+      const result = await services.checkRecipe(req.body);
+      res.json(result);
+    }
+  } catch (err) {
+    if (err.detail != null) {
+      res.status(400).json({ message: err.detail });
+    } else {
+      res.status(400).json(err);
+    }
+  }
+}
+
 async function addRecipe(req, res) {
   try {
     const errors = validationResult(req);
@@ -212,4 +230,5 @@ module.exports = {
   getBookmark,
   deleteBookmark,
   checkBookmark,
+  checkRecipe,
 };

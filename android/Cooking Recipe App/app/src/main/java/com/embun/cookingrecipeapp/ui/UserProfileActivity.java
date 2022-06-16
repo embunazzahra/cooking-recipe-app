@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -79,6 +80,20 @@ public class UserProfileActivity extends AppCompatActivity {
 
             }
         });
+
+        /**
+         * If the listview is clicked,
+         * it will move to recipe detail activity
+         * in RecipeDetailActivity.class
+         */
+        lvUserRecipes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                RecipeFragment.selectedRecipe = recipes.get(i);
+                Intent intent = new Intent(UserProfileActivity.this,RecipeDetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -86,11 +101,9 @@ public class UserProfileActivity extends AppCompatActivity {
      * to prevent back to add page, etc.
      */
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(UserProfileActivity.this, MainActivity.class));
         finish();
-
     }
 }

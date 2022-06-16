@@ -92,6 +92,17 @@ async function getRecipeByUserId(recipe) {
   }
 }
 
+async function checkRecipe(recipe) {
+  const { user_id, recipe_id } = recipe;
+  const query = `SELECT * FROM recipes WHERE recipe_id = ${recipe_id} AND user_id = ${user_id}`;
+  let result = await db.query(query);
+  if (result.rowCount > 0) {
+    return { message: "Exist" };
+  } else {
+    return { message: "Not Exist" };
+  }
+}
+
 async function addRecipe(recipe) {
   const { recipe_name, ingredient, direction, user_id } = recipe;
   const query = `INSERT INTO recipes(recipe_name,ingredient,direction,user_id) VALUES 
@@ -210,4 +221,5 @@ module.exports = {
   getBookmark,
   deleteBookmark,
   checkBookmark,
+  checkRecipe,
 };

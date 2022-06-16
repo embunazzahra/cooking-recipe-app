@@ -30,7 +30,7 @@ import retrofit2.Response;
 public class RecipeDetailActivity extends AppCompatActivity {
     private RetrofitServices retrofitServices;
     TextView tvRecipeName, tvrecipeWriter,tvIngredient,tvDirection;
-    Button btnBookmark, btnBookmarkDelete;
+    Button btnBookmark, btnBookmarkDelete,btnUpdateRecipe;
     Recipe recipe = RecipeFragment.selectedRecipe;
 
     @Override
@@ -43,6 +43,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         tvDirection = findViewById(R.id.tvDirection);
         btnBookmark = findViewById(R.id.btnBookmark);
         btnBookmarkDelete = findViewById(R.id.btnBookmarkDelete);
+        btnUpdateRecipe = findViewById(R.id.btnUpdateRecipe);
 
         HashMap<String, Integer> map = new HashMap<>();
         map.put("recipe_id", Integer.valueOf(recipe.getRecipe_id()) );
@@ -87,6 +88,20 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 addBookmark(map);
             }
         });
+
+        /**
+         * Check if the recipe is user's recipe
+         * */
+        if(recipe.getUser_id()==LoginActivity.getLoggedAccount().getUser_id()){
+            btnUpdateRecipe.setVisibility(View.VISIBLE);
+            btnUpdateRecipe.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+
+        }
 
         /**
          * set delete bookmark button visibility

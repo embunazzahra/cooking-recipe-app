@@ -46,6 +46,5 @@ public interface RetrofitServices {
 
     @POST("/addRecipe")
     Call<DefaultResponse> addRecipe(@Body Recipe recipe);
-
-
+    
 }

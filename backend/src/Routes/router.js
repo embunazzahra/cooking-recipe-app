@@ -21,12 +21,6 @@ router.post("/recipebyid", [validateRecipeId], controllers.getRecipeByRecipeId);
 router.post("/recipebyuser", [validateUserId], controllers.getRecipeByUserId);
 
 router.post(
-  "/checkRecipe",
-  [validateUserId, validateRecipeId],
-  controllers.checkRecipe
-);
-
-router.post(
   "/addRecipe",
   [
     validateRecipeName,

@@ -3,9 +3,13 @@ package com.embun.cookingrecipeapp.ui;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -73,7 +77,38 @@ public class BookmarkFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         retrofitServices = RetrofitInstance.getInstance().create(RetrofitServices.class);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.findItem(R.id.addProduct).setVisible(true);
+
+        MenuItem menuItem = menu.findItem(R.id.search);
+
+    }
+    /**
+     * This will move the activity if one of the menu is clicked.
+     * @param item menu item.
+     * @return selected item.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.search:
+                Toast.makeText(getActivity(),"search clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.addProduct:
+                startActivity(new Intent(getActivity(), UserProfileActivity.class));
+                break;
+            case R.id.aboutme:
+                startActivity(new Intent(getActivity(), UserProfileActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

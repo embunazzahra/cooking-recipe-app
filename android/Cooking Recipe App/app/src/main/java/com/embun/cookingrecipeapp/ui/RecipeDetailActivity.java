@@ -86,6 +86,34 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 addBookmark(map);
             }
         });
+
+        /**
+         * set bookmark button visibility
+         * */
+        btnBookmarkDelete.setVisibility(View.GONE);
+        Call<DefaultResponse> checkbookmarkCall = retrofitServices.checkBookmark(map);
+        checkbookmarkCall.enqueue(new Callback<DefaultResponse>() {
+            @Override
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                if(response.code()==200){
+                    DefaultResponse resp = response.body();
+                    if(resp.getMessage().equalsIgnoreCase("Exist")){
+                        btnBookmarkDelete.setVisibility(View.VISIBLE);
+                    }
+                }else{
+                    try {
+                        Toast.makeText(RecipeDetailActivity.this, response.errorBody().string(),Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                Toast.makeText(RecipeDetailActivity.this, t.toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void addBookmark(HashMap map){
@@ -108,28 +136,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<DefaultResponse> call, Throwable t) {
                 Toast.makeText(RecipeDetailActivity.this, t.toString(),Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        /**
-         * set bookmark button visibility
-         * */
-        btnBookmarkDelete.setVisibility(View.GONE);
-        Call<DefaultResponse> checkbookmarkCall = retrofitServices.checkBookmark(map);
-        checkbookmarkCall.enqueue(new Callback<DefaultResponse>() {
-            @Override
-            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-                if(response.code()==200){
-                    DefaultResponse resp = response.body();
-                    if(resp.getMessage().equalsIgnoreCase("Exist")){
-                        btnBookmarkDelete.setVisibility(View.VISIBLE);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DefaultResponse> call, Throwable t) {
-
             }
         });
     }

@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/drawable-v24/aboutme.xml" value="0.19166666666666668" />
+        <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/drawable-v24/add.xml" value="0.19166666666666668" />
         <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.19427083333333334" />
+        <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/drawable-v24/search.xml" value="0.19166666666666668" />
         <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/drawable/custom_button.xml" value="0.15885416666666666" />
         <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/drawable/ic_launcher_background.xml" value="0.19427083333333334" />
         <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/drawable/shape_panel.xml" value="0.19427083333333334" />
@@ -14,6 +17,7 @@
         <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/layout/activity_user_profile.xml" value="0.25" />
         <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/layout/fragment_bookmark.xml" value="0.27291666666666664" />
         <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/layout/fragment_recipe.xml" value="0.14270833333333333" />
+        <entry key="..\:/proyek oop rec aslab/android/Cooking Recipe App/app/src/main/res/menu/main.xml" value="0.17552083333333332" />
       </map>
     </option>
   </component>

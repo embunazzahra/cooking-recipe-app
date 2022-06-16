@@ -3,7 +3,8 @@ package com.embun.cookingrecipeapp.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import com.embun.cookingrecipeapp.R?
+import com.embun.cookingrecipeapp.R;
+
 public class UserProfileActivity extends AppCompatActivity {
 
     @Override

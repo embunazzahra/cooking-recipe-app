@@ -30,6 +30,7 @@ public class UpdateRecipeActivity extends AppCompatActivity {
     EditText etEditJudulResep,etEditBahanResep,etEditLangkahResep;
     Button btnUpdateRecipe,btnDeleteRecipe;
     int recipe_id;
+    Recipe recipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class UpdateRecipeActivity extends AppCompatActivity {
          * Get recipe_id from RecipeDetailActivity
          */
         recipe_id = getIntent().getExtras().getInt("recipe_id");
-        Recipe recipe = new Recipe(recipe_id);
+        recipe = new Recipe(recipe_id);
         /**
          * Get recipe by recipe id
          */
@@ -118,6 +119,41 @@ public class UpdateRecipeActivity extends AppCompatActivity {
                          Toast.makeText(UpdateRecipeActivity.this, t.toString(),Toast.LENGTH_SHORT).show();
                      }
                  });
+            }
+        });
+
+        /**
+         * Call deleteRecipe if button is clicked
+         */
+        btnDeleteRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Call<DefaultResponse> call = retrofitServices.deleteRecipe(recipe);
+                call.enqueue(new Callback<DefaultResponse>() {
+                    @Override
+                    public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                        if(response.code()==200){
+                            DefaultResponse resp = response.body();
+                            Toast.makeText(UpdateRecipeActivity.this, resp.getMessage(),Toast.LENGTH_SHORT).show();
+                            if(resp.getMessage().equalsIgnoreCase("success")){
+                                Intent intent = new Intent(UpdateRecipeActivity.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+                        }else{
+                            try {
+                                JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                Toast.makeText(UpdateRecipeActivity.this, jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
+                            } catch (IOException | JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                        Toast.makeText(UpdateRecipeActivity.this, t.toString(),Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }

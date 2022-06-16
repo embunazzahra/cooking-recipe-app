@@ -51,4 +51,7 @@ public interface RetrofitServices {
     @PUT("/updateRecipe")
     Call<DefaultResponse> updateRecipe(@Body Recipe recipe);
 
+    @HTTP(method = "DELETE", path = "/deleteRecipe", hasBody = true)
+    Call<DefaultResponse> deleteRecipe(@Body Recipe recipe);
+
 }

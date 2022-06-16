@@ -81,5 +81,10 @@ public class AddRecipeActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Call delete recipe if on click
+         */
+
+
     }
 }

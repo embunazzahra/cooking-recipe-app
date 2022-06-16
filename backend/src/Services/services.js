@@ -16,7 +16,7 @@ async function login(user) {
   } else {
     let isMatch = await comparePassword(password, result.rows[0].password);
     if (isMatch) {
-      return { message: "log in success", user: result.rows[0] };
+      return { message: "log in success", data: result.rows[0] };
     } else {
       return { message: "Wrong Password" };
     }

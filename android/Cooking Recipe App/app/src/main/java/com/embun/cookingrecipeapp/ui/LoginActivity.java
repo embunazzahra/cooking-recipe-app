@@ -2,6 +2,7 @@ package com.embun.cookingrecipeapp.ui;
 
 import com.embun.cookingrecipeapp.R;
 import com.embun.cookingrecipeapp.data.RetrofitInstance;
+import com.embun.cookingrecipeapp.data.model.GetRecipesResponse;
 import com.embun.cookingrecipeapp.data.model.GetUserResponse;
 import com.embun.cookingrecipeapp.data.model.User;
 import com.embun.cookingrecipeapp.data.services.RetrofitServices;
@@ -110,19 +111,17 @@ public class LoginActivity extends AppCompatActivity {
 
         User user = new User(email,password);
 
-        Call<Object> call = retrofitServices.login(user);
+        Call<GetUserResponse> call = retrofitServices.login(user);
         call.enqueue(
-                new Callback<Object>() {
+                new Callback<GetUserResponse>() {
                     @Override
-                    public void onResponse(Call<Object> call, Response<Object> response) {
-                        try{
-                            String obj = gson.toJson(response.body());
-                            JSONObject jsonObject = new JSONObject(obj);
-                            String message = jsonObject.getString("message");
-                            loggedAccount = gson.fromJson(jsonObject.getString("user"),User.class);
-                            if(message!=null) {
-                                Toast.makeText(LoginActivity.this, message,Toast.LENGTH_SHORT).show();
-                                if (message.equalsIgnoreCase("log in success")) {
+                    public void onResponse(Call<GetUserResponse> call, Response<GetUserResponse> response) {
+                        if(response.code()==200){
+                            GetUserResponse resp = response.body();
+                            Toast.makeText(LoginActivity.this, resp.getMessage(),Toast.LENGTH_SHORT).show();
+                            if(resp.getUser()!=null){
+                                loggedAccount = resp.getUser();
+                                if(resp.getMessage().equalsIgnoreCase("log in success")){
                                     SessionManager sessionManager = new SessionManager(LoginActivity.this);
                                     sessionManager.saveSession(loggedAccount);
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -130,14 +129,37 @@ public class LoginActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        }else{
+                            try {
+                                JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                Toast.makeText(LoginActivity.this, jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
+                            } catch (JSONException | IOException e) {
+                                e.printStackTrace();
+                            }
                         }
+//                        try{
+//                            String obj = gson.toJson(response.body());
+//                            JSONObject jsonObject = new JSONObject(obj);
+//                            String message = jsonObject.getString("message");
+//                            loggedAccount = gson.fromJson(jsonObject.getString("user"),User.class);
+//                            if(message!=null) {
+//                                Toast.makeText(LoginActivity.this, message,Toast.LENGTH_SHORT).show();
+//                                if (message.equalsIgnoreCase("log in success")) {
+//                                    SessionManager sessionManager = new SessionManager(LoginActivity.this);
+//                                    sessionManager.saveSession(loggedAccount);
+//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                    startActivity(intent);
+//                                }
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
 
                     }
 
                     @Override
-                    public void onFailure(Call<Object> call, Throwable t) {
+                    public void onFailure(Call<GetUserResponse> call, Throwable t) {
                         Toast.makeText(LoginActivity.this, t.toString(),Toast.LENGTH_SHORT).show();
                     }
                 }

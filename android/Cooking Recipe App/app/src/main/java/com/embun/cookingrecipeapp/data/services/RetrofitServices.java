@@ -20,7 +20,7 @@ import retrofit2.http.PUT;
 public interface RetrofitServices {
 
     @POST("/login")
-    Call<Object> login(@Body User user);
+    Call<GetUserResponse> login(@Body User user);
 
     @POST("/register")
     Call<DefaultResponse> register(@Body User user);

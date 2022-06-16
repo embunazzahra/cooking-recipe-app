@@ -97,7 +97,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
             btnUpdateRecipe.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    Intent intent = new Intent(RecipeDetailActivity.this,UpdateRecipeActivity.class);
+                    intent.putExtra("recipe_id",recipe.getRecipe_id());
+                    startActivity(intent);
                 }
             });
 
@@ -119,6 +121,17 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 deleteBookmark(map);
             }
         });
+    }
+
+    /**
+     * If user pressed back button, push them to main page
+     * to prevent back to add page, etc.
+     */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(RecipeDetailActivity.this, MainActivity.class));
+        finish();
     }
 
     private void addBookmark(HashMap map){

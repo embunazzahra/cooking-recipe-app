@@ -15,6 +15,9 @@ import com.embun.cookingrecipeapp.data.model.DefaultResponse;
 import com.embun.cookingrecipeapp.data.model.Recipe;
 import com.embun.cookingrecipeapp.data.services.RetrofitServices;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import retrofit2.Call;
@@ -62,8 +65,9 @@ public class AddRecipeActivity extends AppCompatActivity {
                             }
                         }else{
                             try {
-                                Toast.makeText(AddRecipeActivity.this, response.errorBody().string(),Toast.LENGTH_SHORT).show();
-                            } catch (IOException e) {
+                                JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                Toast.makeText(AddRecipeActivity.this, jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
+                            } catch (IOException | JSONException e) {
                                 e.printStackTrace();
                             }
                         }

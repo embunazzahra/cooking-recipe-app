@@ -32,6 +32,17 @@ public class Recipe {
         this.user_id = user_id;
     }
 
+    public Recipe(int recipe_id) {
+        this.recipe_id = recipe_id;
+    }
+
+    public Recipe(int recipe_id, String recipe_name, String ingredient, String direction) {
+        this.recipe_id = recipe_id;
+        this.recipe_name = recipe_name;
+        this.ingredient = ingredient;
+        this.direction = direction;
+    }
+
     @Override
     public String toString() {
         return recipe_name.toUpperCase()+"\n"+username;

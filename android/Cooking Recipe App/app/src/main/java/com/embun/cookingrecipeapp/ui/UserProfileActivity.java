@@ -77,7 +77,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<GetRecipesResponse> call, Throwable t) {
-
+                Toast.makeText(UserProfileActivity.this, t.toString(),Toast.LENGTH_SHORT).show();
             }
         });
 

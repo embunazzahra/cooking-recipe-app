@@ -63,4 +63,7 @@ router.post(
   [validateRecipeId, validateUserId],
   controllers.checkBookmark
 );
+
+router.post("/getUserByUserId", [validateUserId], controllers.getUserByUserId);
+
 module.exports = router;

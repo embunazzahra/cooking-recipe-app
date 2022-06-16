@@ -199,6 +199,24 @@ async function checkBookmark(req, res) {
   }
 }
 
+async function getUserByUserId(req, res) {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: errors.array()[0].msg });
+    } else {
+      const result = await services.getUserByUserId(req.body);
+      res.json(result);
+    }
+  } catch (err) {
+    if (err.detail != null) {
+      res.status(400).json({ message: err.detail });
+    } else {
+      res.status(400).json(err);
+    }
+  }
+}
+
 module.exports = {
   login,
   register,
@@ -212,4 +230,5 @@ module.exports = {
   getBookmark,
   deleteBookmark,
   checkBookmark,
+  getUserByUserId,
 };

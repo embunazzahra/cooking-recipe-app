@@ -2,6 +2,7 @@ package com.embun.cookingrecipeapp.data.services;
 
 import com.embun.cookingrecipeapp.data.model.DefaultResponse;
 import com.embun.cookingrecipeapp.data.model.GetRecipesResponse;
+import com.embun.cookingrecipeapp.data.model.GetUserResponse;
 import com.embun.cookingrecipeapp.data.model.Recipe;
 import com.embun.cookingrecipeapp.data.model.User;
 
@@ -53,5 +54,8 @@ public interface RetrofitServices {
 
     @HTTP(method = "DELETE", path = "/deleteRecipe", hasBody = true)
     Call<DefaultResponse> deleteRecipe(@Body Recipe recipe);
+
+    @POST("/getUserByUserId")
+    Call<GetUserResponse> getUserByUserId(@Body User user);
 
 }

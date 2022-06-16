@@ -197,6 +197,17 @@ async function checkBookmark(bookmark) {
   }
 }
 
+async function getUserByUserId(user) {
+  const { user_id } = user;
+  const query = `SELECT * FROM users WHERE user_id = ${user_id}`;
+  let result = await db.query(query);
+  if (result.rowCount == 0) {
+    return { message: "User not found." };
+  } else {
+    return { message: "success", data: result.rows[0] };
+  }
+}
+
 module.exports = {
   login,
   register,
@@ -210,4 +221,5 @@ module.exports = {
   getBookmark,
   deleteBookmark,
   checkBookmark,
+  getUserByUserId,
 };

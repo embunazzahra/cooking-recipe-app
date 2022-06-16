@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ import retrofit2.Response;
 public class UserProfileActivity extends AppCompatActivity {
     TextView tvProfileUsername,tvProfileEmail,tvUserRecipes;
     ListView lvUserRecipes;
+    Button btnLogout;
     RetrofitServices retrofitServices;
     private List<Recipe> recipes;
     private static ArrayAdapter<Recipe> userRecipeLVAdapter;
@@ -39,6 +41,7 @@ public class UserProfileActivity extends AppCompatActivity {
         tvProfileEmail = findViewById(R.id.tvProfileEmail);
         lvUserRecipes = findViewById(R.id.lvUserRecipes);
         tvUserRecipes = findViewById(R.id.tvUserRecipes);
+        btnLogout = findViewById(R.id.btnLogout);
 
         /**
          * set text on User Profile
@@ -94,6 +97,16 @@ public class UserProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        /**
+         * Logout user
+         */
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logOut();
+            }
+        });
     }
 
     /**
@@ -105,5 +118,15 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onBackPressed();
         startActivity(new Intent(UserProfileActivity.this, MainActivity.class));
         finish();
+    }
+
+    private void logOut(){
+        //remove session and back to login session
+        SessionManager sessionManager = new SessionManager(UserProfileActivity.this);
+        sessionManager.removeSession();
+
+        Intent intent = new Intent(UserProfileActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

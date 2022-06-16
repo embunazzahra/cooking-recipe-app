@@ -2,6 +2,7 @@ package com.embun.cookingrecipeapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -88,9 +89,77 @@ public class RecipeDetailActivity extends AppCompatActivity {
         });
 
         /**
-         * set bookmark button visibility
+         * set delete bookmark button visibility
          * */
         btnBookmarkDelete.setVisibility(View.GONE);
+        checkIfBookmarkExist(map);
+
+
+        /**
+         * set delete bookmark button callback
+         * */
+        btnBookmarkDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteBookmark(map);
+            }
+        });
+    }
+
+    private void addBookmark(HashMap map){
+        Call <DefaultResponse> call = retrofitServices.addBookmark(map);
+        call.enqueue(new Callback<DefaultResponse>() {
+            @Override
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                if(response.code()==200){
+                    DefaultResponse resp = response.body();
+                    Toast.makeText(RecipeDetailActivity.this, resp.getMessage(),Toast.LENGTH_SHORT).show();
+                    checkIfBookmarkExist(map);
+                }else{
+                    try {
+                        Toast.makeText(RecipeDetailActivity.this, response.errorBody().string(),Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                Toast.makeText(RecipeDetailActivity.this, t.toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void deleteBookmark(HashMap map){
+        Call<DefaultResponse> call = retrofitServices.deleteBookmark(map);
+        call.enqueue(new Callback<DefaultResponse>() {
+            @Override
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                if(response.code()==200){
+                    DefaultResponse resp = response.body();
+                    Toast.makeText(RecipeDetailActivity.this, resp.getMessage(),Toast.LENGTH_SHORT).show();
+                    if(resp.getMessage().equalsIgnoreCase("Success")){
+                        Intent intent = new Intent(RecipeDetailActivity.this,MainActivity.class);
+                        startActivity(intent);
+                    }
+                }else{
+                    try {
+                        Toast.makeText(RecipeDetailActivity.this, response.errorBody().string(),Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                Toast.makeText(RecipeDetailActivity.this, t.toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void checkIfBookmarkExist(HashMap map){
         Call<DefaultResponse> checkbookmarkCall = retrofitServices.checkBookmark(map);
         checkbookmarkCall.enqueue(new Callback<DefaultResponse>() {
             @Override
@@ -115,30 +184,5 @@ public class RecipeDetailActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void addBookmark(HashMap map){
-        Call <DefaultResponse> call = retrofitServices.addBookmark(map);
-        call.enqueue(new Callback<DefaultResponse>() {
-            @Override
-            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-                if(response.code()==200){
-                    DefaultResponse resp = response.body();
-                    Toast.makeText(RecipeDetailActivity.this, resp.getMessage(),Toast.LENGTH_SHORT).show();
-                }else{
-                    try {
-                        Toast.makeText(RecipeDetailActivity.this, response.errorBody().string(),Toast.LENGTH_SHORT).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DefaultResponse> call, Throwable t) {
-                Toast.makeText(RecipeDetailActivity.this, t.toString(),Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
 
 }

@@ -10,7 +10,9 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 
 public interface RetrofitServices {
@@ -35,4 +37,7 @@ public interface RetrofitServices {
 
     @POST("/checkBookmark")
     Call<DefaultResponse> checkBookmark(@Body HashMap map);
+
+    @HTTP(method = "DELETE", path = "/deleteBookmark", hasBody = true)
+    Call<DefaultResponse> deleteBookmark(@Body HashMap map);
 }

@@ -48,9 +48,6 @@ public class RecipeFragment extends Fragment {
     private static List<Recipe> recipes;
     public static Recipe selectedRecipe = null;
 
-
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +63,21 @@ public class RecipeFragment extends Fragment {
          menu.findItem(R.id.addProduct).setVisible(true);
 
         MenuItem menuItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Search recipe here");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                recipeLVAdapter.getFilter().filter(s);
+                return false;
+            }
+        });
 
     }
     /**

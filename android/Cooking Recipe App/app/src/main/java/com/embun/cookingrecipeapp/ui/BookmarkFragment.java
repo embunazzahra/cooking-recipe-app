@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +55,23 @@ public class BookmarkFragment extends Fragment {
         menu.findItem(R.id.addProduct).setVisible(true);
 
         MenuItem menuItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Search your bookmark");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if(bookmarkLVAdapter!=null){
+                    bookmarkLVAdapter.getFilter().filter(s);
+                }
+                return false;
+            }
+        });
 
     }
     /**
@@ -68,7 +86,7 @@ public class BookmarkFragment extends Fragment {
                 Toast.makeText(getActivity(),"search clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.addProduct:
-                startActivity(new Intent(getActivity(), UserProfileActivity.class));
+                startActivity(new Intent(getActivity(), AddRecipeActivity.class));
                 break;
             case R.id.aboutme:
                 startActivity(new Intent(getActivity(), UserProfileActivity.class));

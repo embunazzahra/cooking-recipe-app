@@ -7,6 +7,13 @@ const {
   validatePassword,
 } = require("../Helpers/helper");
 
+/**
+ * Function to check email and password
+ * from the database for log in purpose.
+ *
+ * @param {*} user the param
+ * @returns message or/and user's data.
+ */
 async function login(user) {
   const { email, password } = user;
   const query = `SELECT * FROM users WHERE email = '${email}';`;
@@ -23,6 +30,12 @@ async function login(user) {
   }
 }
 
+/**
+ * Function to insert user data in database
+ * for register purpose.
+ * @param {*} user the param
+ * @returns status message.
+ */
 async function register(user) {
   const { username, email, password } = user;
   if (await !validateEmail(email)) {
@@ -48,6 +61,11 @@ async function register(user) {
   }
 }
 
+/**
+ * Function to fetch all recipe in database.
+ *
+ * @returns message and/or array of recipes data
+ */
 async function getAllRecipes() {
   const query = `SELECT recipe_id,recipe_name,ingredient,direction,recipes.user_id,users.username
     FROM recipes
@@ -61,6 +79,13 @@ async function getAllRecipes() {
   }
 }
 
+/**
+ * Function to fetch recipes in database
+ * by recipe id.
+ *
+ * @param {*} recipe the param
+ * @returns message and/or array of recipes data
+ */
 async function getRecipeByRecipeId(recipe) {
   const { recipe_id } = recipe;
   const query = `SELECT recipe_id,recipe_name,ingredient,direction,recipes.user_id,users.username
@@ -76,6 +101,12 @@ async function getRecipeByRecipeId(recipe) {
   }
 }
 
+/**
+ * Function to fetch recipe by user id (which create the recipe).
+ *
+ * @param {*} recipe the param
+ * @returns  message and/or array of recipes data
+ */
 async function getRecipeByUserId(recipe) {
   const { user_id } = recipe;
   const query = `
@@ -92,6 +123,12 @@ async function getRecipeByUserId(recipe) {
   }
 }
 
+/**
+ * Function to insert new recipe in database.
+ *
+ * @param {*} recipe the param
+ * @returns status message.
+ */
 async function addRecipe(recipe) {
   const { recipe_name, ingredient, direction, user_id } = recipe;
   const query = `INSERT INTO recipes(recipe_name,ingredient,direction,user_id) VALUES 
@@ -104,6 +141,12 @@ async function addRecipe(recipe) {
   }
 }
 
+/**
+ * Function to update recipe in the database.
+ *
+ * @param {*} recipe the param
+ * @returns status message.
+ */
 async function updateRecipe(recipe) {
   const { recipe_id, recipe_name, ingredient, direction } = recipe;
   const query = `UPDATE recipes SET 
@@ -119,6 +162,11 @@ async function updateRecipe(recipe) {
   }
 }
 
+/**
+ * Function to delete recipe in the database.
+ * @param {*} recipe the param
+ * @returns status message.
+ */
 async function deleteRecipe(recipe) {
   const { recipe_id } = recipe;
   const query = `DELETE FROM recipes WHERE recipe_id = '${recipe_id}'`;
@@ -130,6 +178,11 @@ async function deleteRecipe(recipe) {
   }
 }
 
+/**
+ * Function to add bookmarked recipe in the database.
+ * @param {*} bookmark the param
+ * @returns status message.
+ */
 async function addBookmark(bookmark) {
   if (await isBookmarkAlreadyExist(bookmark)) {
     return { message: "It's already in your bookmarks" };
@@ -147,6 +200,14 @@ async function addBookmark(bookmark) {
   }
 }
 
+/**
+ * Function to check if there is a row
+ * contained certain user_id and recipe_id
+ * in the database.
+ *
+ * @param {*} bookmark the param
+ * @returns true if exist, false otherwise.
+ */
 async function isBookmarkAlreadyExist(bookmark) {
   const { user_id, recipe_id } = bookmark;
   const query = `SELECT * FROM saved_recipes WHERE recipe_id = ${recipe_id} AND user_id = ${user_id}`;
@@ -158,6 +219,13 @@ async function isBookmarkAlreadyExist(bookmark) {
   }
 }
 
+/**
+ * Function to get all recipe bookmarked
+ * by the user.
+ *
+ * @param {*} user the param
+ * @returns message and/or array of recipes data.
+ */
 async function getBookmark(user) {
   const { user_id } = user;
   const query = `SELECT recipes.recipe_id,recipes.recipe_name,recipes.user_id,users.username
@@ -175,6 +243,11 @@ async function getBookmark(user) {
   }
 }
 
+/**
+ * Function to delete bookmark recipe in the database.
+ * @param {*} bookmark the param
+ * @returns status message.
+ */
 async function deleteBookmark(bookmark) {
   const { user_id, recipe_id } = bookmark;
   const query = `DELETE FROM saved_recipes WHERE recipe_id = ${recipe_id} AND user_id = ${user_id}`;
@@ -186,6 +259,14 @@ async function deleteBookmark(bookmark) {
   }
 }
 
+/**
+ * Function to check if there is a row
+ * contained certain user_id and recipe_id
+ * in the database.
+ *
+ * @param {*} bookmark the param
+ * @returns status message.
+ */
 async function checkBookmark(bookmark) {
   const { user_id, recipe_id } = bookmark;
   const query = `SELECT * FROM saved_recipes WHERE recipe_id = ${recipe_id} AND user_id = ${user_id}`;
@@ -197,6 +278,12 @@ async function checkBookmark(bookmark) {
   }
 }
 
+/**
+ * Function to get a row of user data in the database
+ * by user id.
+ * @param {*} user the param.
+ * @returns message and/or user data.
+ */
 async function getUserByUserId(user) {
   const { user_id } = user;
   const query = `SELECT * FROM users WHERE user_id = ${user_id}`;

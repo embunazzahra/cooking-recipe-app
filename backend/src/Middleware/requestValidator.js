@@ -1,5 +1,9 @@
 const { check } = require("express-validator");
 
+/**
+ * Export some body request
+ * validation.
+ */
 module.exports = {
   validateUsername: check("username")
     .notEmpty()

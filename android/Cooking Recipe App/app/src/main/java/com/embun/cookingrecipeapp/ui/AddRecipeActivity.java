@@ -24,8 +24,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * This is activity for adding a new recipe.
+ *
+ * @author Dhau' Embun Azzahra
+ */
 public class AddRecipeActivity extends AppCompatActivity {
+    /**
+     * Form for user's title, ingredients, and directions
+     * of the recipe.
+     */
     EditText etJudulResep,etBahanResep,etLangkahResep;
+    /**
+     * Button for calling add recipe request.
+     */
     Button btnAddRecipe;
     RetrofitServices retrofitServices;
 
@@ -80,11 +92,5 @@ public class AddRecipeActivity extends AppCompatActivity {
                 });
             }
         });
-
-        /**
-         * Call delete recipe if on click
-         */
-
-
     }
 }

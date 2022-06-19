@@ -25,12 +25,32 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * This is activity for user profile.
+ *
+ * @author Dhau' Embun Azzahra
+ */
 public class UserProfileActivity extends AppCompatActivity {
+    /**
+     * Textview for display user's info.
+     */
     TextView tvProfileUsername,tvProfileEmail,tvUserRecipes;
+    /**
+     * List view for display user's recipe.
+     */
     ListView lvUserRecipes;
+    /**
+     * Button for logged out the current user.
+     */
     Button btnLogout;
     RetrofitServices retrofitServices;
+    /**
+     * A List for recipes in the listview.
+     */
     private List<Recipe> recipes;
+    /**
+     * Array adapter for recipe listview.
+     */
     private static ArrayAdapter<Recipe> userRecipeLVAdapter;
 
     @Override
@@ -120,6 +140,10 @@ public class UserProfileActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Function for removing session of the current user
+     * and intent to the login activity.
+     */
     private void logOut(){
         //remove session and back to login session
         SessionManager sessionManager = new SessionManager(UserProfileActivity.this);

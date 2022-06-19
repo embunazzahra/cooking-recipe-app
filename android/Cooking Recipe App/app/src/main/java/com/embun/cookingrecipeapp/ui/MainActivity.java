@@ -9,14 +9,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
 
+
+/**
+ * This is class for main activity.
+ * this activity consists of fragments:
+ * Recipe fragment to show all the recipe,
+ * Bookmark fragment to show all recipe bookmarked by user.
+ *
+ * @author Dhau' Embun Azzahra
+ */
 public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 pager2;

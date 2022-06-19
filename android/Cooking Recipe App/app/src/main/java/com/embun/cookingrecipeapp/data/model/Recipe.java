@@ -2,17 +2,40 @@ package com.embun.cookingrecipeapp.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Class that represents a recipe
+ *
+ * @author Dhau' Embun Azzahra
+ */
 public class Recipe {
+    /**
+     * The recipe id.
+     */
     @SerializedName("recipe_id")
     private int recipe_id;
+    /**
+     * The recipe name.
+     */
     @SerializedName("recipe_name")
     private String recipe_name;
+    /**
+     * The recipe ingredients.
+     */
     @SerializedName("ingredient")
     private String ingredient;
+    /**
+     * The recipe directions.
+     */
     @SerializedName("direction")
     private String direction;
+    /**
+     * The recipe author id.
+     */
     @SerializedName("user_id")
     private int user_id;
+    /**
+     * The username of recipe author.
+     */
     @SerializedName("username")
     private String username;
 

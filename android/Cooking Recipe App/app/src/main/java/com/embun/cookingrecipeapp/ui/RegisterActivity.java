@@ -25,14 +25,33 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * This is class for register activity.
+ *
+ * @author Dhau' Embun Azzahra
+ */
 public class RegisterActivity extends AppCompatActivity {
     private RetrofitServices retrofitServices;
+    /**
+     * Form for user's password.
+     */
     private EditText etPassword;
+    /**
+     * Form for user's email.
+     */
     private EditText etEmail;
+    /**
+     * Form for user's username.
+     */
     private EditText etUsername;
+    /**
+     * Button for moving to Login Activity.
+     */
     private Button loginBtn;
+    /**
+     * Button to process the register request.
+     */
     private Button regBtn;
-    private static final Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

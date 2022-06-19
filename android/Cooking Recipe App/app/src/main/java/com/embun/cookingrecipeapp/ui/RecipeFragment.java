@@ -39,13 +39,28 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
+/**
+ * This is a fragment to display all recipe.
+ *
+ * @author Dhau' Embun Azzahra
+ */
 public class RecipeFragment extends Fragment {
-
+    /**
+     * A recipe list view.
+     */
     ListView recipeList;
+    /**
+     * Array adapter for all recipe listview.
+     */
     private static ArrayAdapter<Recipe> recipeLVAdapter;
     private RetrofitServices retrofitServices;
+    /**
+     * A List for recipes in the listview.
+     */
     private static List<Recipe> recipes;
+    /**
+     * A recipe which user has selected from listview.
+     */
     public static Recipe selectedRecipe = null;
 
     @Override

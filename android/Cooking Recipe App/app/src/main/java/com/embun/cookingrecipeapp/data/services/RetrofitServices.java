@@ -17,6 +17,12 @@ import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 
+/**
+ * Interface for API call methods
+ * using retrofit.
+ *
+ * @author Dhau' Embun Azzahra
+ */
 public interface RetrofitServices {
 
     @POST("/login")

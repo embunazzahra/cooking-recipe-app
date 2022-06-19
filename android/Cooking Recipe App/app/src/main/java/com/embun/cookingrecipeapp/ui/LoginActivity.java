@@ -26,16 +26,41 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * This is class for user login activity.
+ *
+ * @author Dhau' Embun Azzahra
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private RetrofitServices retrofitServices;
+    /**
+     * Form for user's password.
+     */
     private EditText etPassword;
+    /**
+     * Form for user's email.
+     */
     private EditText etEmail;
+    /**
+     * Button to process the login request.
+     */
     private Button loginBtn;
+    /**
+     * Button for moving to Register Activity.
+     */
     private Button regBtn;
+    /**
+     * For saving current logged account.
+     */
     private static User loggedAccount = null;
 
-    private static final Gson gson = new Gson();
+    /**
+     * Method to return user object logged in
+     * on this app.
+     *
+     * @return user account.
+     */
     public static User getLoggedAccount(){
         return loggedAccount;
     }
@@ -137,25 +162,6 @@ public class LoginActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }
-//                        try{
-//                            String obj = gson.toJson(response.body());
-//                            JSONObject jsonObject = new JSONObject(obj);
-//                            String message = jsonObject.getString("message");
-//                            loggedAccount = gson.fromJson(jsonObject.getString("user"),User.class);
-//                            if(message!=null) {
-//                                Toast.makeText(LoginActivity.this, message,Toast.LENGTH_SHORT).show();
-//                                if (message.equalsIgnoreCase("log in success")) {
-//                                    SessionManager sessionManager = new SessionManager(LoginActivity.this);
-//                                    sessionManager.saveSession(loggedAccount);
-//                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                    startActivity(intent);
-//                                }
-//                            }
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-
                     }
 
                     @Override

@@ -4,6 +4,12 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/**
+ * Class that represents the response in the
+ * form of recipes list
+ *
+ * @author Dhau' Embun Azzahra
+ */
 public class GetRecipesResponse extends  DefaultResponse{
     @SerializedName("data")
     private List<Recipe> recipes = null;

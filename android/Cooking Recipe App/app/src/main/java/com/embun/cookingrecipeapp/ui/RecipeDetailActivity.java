@@ -27,6 +27,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * This is class for recipe detail activity.
+ * All user can bookmark the recipe or delete the bookmark.
+ * The recipe author can update or delete the recipe.
+ *
+ * @author Dhau' Embun Azzahra
+ */
 public class RecipeDetailActivity extends AppCompatActivity {
     private RetrofitServices retrofitServices;
     TextView tvRecipeName, tvrecipeWriter,tvIngredient,tvDirection;

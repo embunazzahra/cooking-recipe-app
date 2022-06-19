@@ -6,6 +6,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitInstance {
     private static Retrofit retrofit;
 
+    /**
+     * Method for creating a retrofit instance
+     * with localhost base url.
+     *
+     * @return a Retrofit instance.
+     */
     public static Retrofit getInstance(){
         if (retrofit==null){
             retrofit = new Retrofit.Builder()

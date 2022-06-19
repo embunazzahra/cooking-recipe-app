@@ -25,9 +25,24 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * This is a Update Recipe Activity.
+ * The author of the recipe can make
+ * changes to the recipe.
+ *
+ * @author Dhau' Embun Azzahra
+ */
 public class UpdateRecipeActivity extends AppCompatActivity {
     RetrofitServices retrofitServices;
+    /**
+     * Form for user's title, ingredients, and directions
+     * of the recipe.
+     * Initialize with the current recipe data.
+     */
     EditText etEditJudulResep,etEditBahanResep,etEditLangkahResep;
+    /**
+     * Button for calling update and delete request.
+     */
     Button btnUpdateRecipe,btnDeleteRecipe;
     int recipe_id;
     Recipe recipe;

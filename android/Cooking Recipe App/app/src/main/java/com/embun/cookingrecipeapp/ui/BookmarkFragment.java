@@ -32,12 +32,30 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
+/**
+ * This is a fragment to display a list
+ * of recipes bookmarked by the user.
+ *
+ * @author Dhau' Embun Azzahra
+ */
 public class BookmarkFragment extends Fragment {
+    /**
+     * A recipe list view bookmarked by the user.
+     */
     ListView bookmarkList;
+    /**
+     * A textview to tell the user
+     * if they don't have any recipe bookmarked.
+     */
     TextView tvBookmark;
+    /**
+     * Array adapter for bookmark listview.
+     */
     private static ArrayAdapter<Recipe> bookmarkLVAdapter;
     private RetrofitServices retrofitServices;
+    /**
+     * A List for recipes in the listview.
+     */
     private static List<Recipe> recipes;
 
 

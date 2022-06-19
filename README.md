@@ -4,7 +4,7 @@ Cooking Recipe App adalah aplikasi android berbasis Java. Aplikasi ini memiliki 
 
 ## API Reference Documentation
 
-- https://documenter.getpostman.com/view/18425127/UzBmMmzx
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/18425127/UzBmMmzx)
 
 ## Deployment
 
@@ -14,6 +14,12 @@ Cooking Recipe App adalah aplikasi android berbasis Java. Aplikasi ini memiliki 
 
 ## ERD
 
+![ERD](https://github.com/embunazzahra/cooking-recipe-app/blob/master/ERD.png)
+
 ## Application Flowchart
 
+![ERD](https://github.com/embunazzahra/cooking-recipe-app/blob/master/Flowchart.png)
+
 ## Author
+
+- [Dhau' Embun Azzahra](https://github.com/embunazzahra/)

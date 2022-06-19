@@ -12,7 +12,7 @@
 
 3. Create .env with following content
 
-````
+```
 DB_HOST=
 DB_DATABASE=
 DB_USER=
@@ -20,13 +20,13 @@ DB_PASSWORD=
 
 PORT=3000
 SECRET=AAA
-````
+```
 
 ## Run
 
 1. Start Server
 
-> npm start
+> npm run dev
 
 2. Open in url or using an Endpoint tester (postman)
 

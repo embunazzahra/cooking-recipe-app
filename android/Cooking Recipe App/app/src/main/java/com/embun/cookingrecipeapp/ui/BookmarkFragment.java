@@ -159,7 +159,7 @@ public class BookmarkFragment extends Fragment {
         bookmarkList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                RecipeFragment.selectedRecipe = recipes.get(i);
+                RecipeFragment.selectedRecipe = (Recipe) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(getActivity(),RecipeDetailActivity.class);
                 startActivity(intent);
             }

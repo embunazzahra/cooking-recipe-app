@@ -1,15 +1,14 @@
 package com.embun.cookingrecipeapp.ui;
 
-import com.embun.cookingrecipeapp.R;
-import com.google.android.material.tabs.TabLayout;
+import android.annotation.SuppressLint;
+import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.annotation.SuppressLint;
-import android.os.Bundle;
+import com.embun.cookingrecipeapp.R;
+import com.google.android.material.tabs.TabLayout;
 
 
 /**
